@@ -6,10 +6,6 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  return res.status(200).send("Iniciando api");
-});
-
 app.get("/usuarios", async (req, res) => {
   try {
     const users = await db.query("SELECT * FROM usuarios");
@@ -17,7 +13,6 @@ app.get("/usuarios", async (req, res) => {
     return res.status(200).json({ status: 200, data: users });
   } catch (err) {
     return res.status(500).json({ error: err.message });
-    console.log(err.message);
   }
 });
 
